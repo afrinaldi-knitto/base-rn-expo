@@ -66,7 +66,7 @@ function deleteEnvFiles(root) {
     if (file === ".env" || file.startsWith(".env.")) {
       try {
         fs.rmSync(path.join(root, file), { force: true, recursive: true });
-        console.log(`🗑️ File ${file} dihapus.`);
+        console.log(`🗑️  File ${file} dihapus.`);
       } catch (err) {
         console.error(`Error menghapus ${file}: ${err}`);
       }
