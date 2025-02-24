@@ -1,0 +1,20 @@
+{
+  "name": "base-rn-expo",
+  "slug": "base-rn-expo",
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "icon": "./src/assets/logo/logo.png",
+  "scheme": "basernexpo",
+  "userInterfaceStyle": "automatic",
+  "newArchEnabled": true,
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./src/assets/logo/logo.png",
+      "backgroundColor": "#ffffff"
+    },
+    "package": "com.base.expo"
+  },
+  "experiments": {
+    "typedRoutes": true
+  }
+}
