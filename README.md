@@ -4,6 +4,10 @@
 
 **Package Manager:** PNPM
 
+**JDK:** >=11
+
+*note : pastikan environment `JAVA_HOME` menggunakan minimal `JDK versi 11`
+
 ## Instalasi
 
 ```bash
@@ -27,6 +31,8 @@ tambahkan file `local.properties` pada folder` android/` lalu set lokasi sdk (se
 atau
 
 Buka android studio dan arahkan pada folder `android/` maka otomatis `local.properties` akan tergenerate.
+
+*note : jika dibuka dengan `android studio` biasanya `JDK` akan otomatis di set, maka pastikan menggunakan minimal versi 11. cek pada `settings` > `Build, Execution, Deployment` > `Build tools` > `Gradle` > `Gradle JDK`
 
 ## Jalankan & Buat APK
 
