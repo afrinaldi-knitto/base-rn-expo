@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   Keyboard,
   SafeAreaView,
+  TextInput,
 } from "react-native";
 import { Image } from "expo-image";
-import DeviceInfo from "react-native-device-info";
+import { nativeApplicationVersion } from "expo-application";
 import { useLoginMutation } from "@/src/redux/api/login-api";
 import ProgressButton from "./components/progress-button";
 import FormTextInput from "./components/form-text-input";
@@ -18,16 +19,16 @@ import {
   setUsername,
 } from "@/src/redux/slice/login-slice";
 import { showToast } from "@/src/lib/utils/toast";
-import { useNavigation } from "@react-navigation/native";
-import { RootStackNavigation } from "@/src/types/navigation";
 import { StatusBar } from "expo-status-bar";
+import { router } from "expo-router";
 
 const LoginScreen = () => {
-  const navigation = useNavigation<RootStackNavigation>();
   const dispatch = useAppDispatch();
   const [login, { isLoading }] = useLoginMutation();
-  const currentVersion = DeviceInfo.getVersion();
+  const currentVersion = nativeApplicationVersion;
   const { username, password } = useAppSelector((state) => state.login);
+
+  const passwordRef = useRef<TextInput>(null);
 
   const handleLogin = async () => {
     Keyboard.dismiss();
@@ -51,10 +52,7 @@ const LoginScreen = () => {
   };
 
   const navigateToMain = () => {
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "Main" }],
-    });
+    router.replace("/home");
   };
 
   return (
@@ -76,6 +74,7 @@ const LoginScreen = () => {
         iconSource={require("@/src/assets/icon/email.png")}
         returnKeyType="next"
         autoFocus
+        onSubmitEditing={() => passwordRef.current?.focus()}
       />
 
       <FormTextInput
@@ -83,8 +82,10 @@ const LoginScreen = () => {
         placeholder="Password"
         value={username}
         iconSource={require("@/src/assets/icon/key.png")}
-        returnKeyType="next"
+        returnKeyType="done"
         secureTextEntry
+        inputRef={passwordRef}
+        onSubmitEditing={handleLogin}
       />
 
       <TouchableOpacity style={styles.btnForgotPassword} onPress={() => {}}>

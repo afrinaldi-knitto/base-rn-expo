@@ -1,5 +1,12 @@
-import React from "react";
-import { Image, StyleSheet, TextInput, View } from "react-native";
+import React, { RefObject } from "react";
+import {
+  Image,
+  NativeSyntheticEvent,
+  StyleSheet,
+  TextInput,
+  TextInputSubmitEditingEventData,
+  View,
+} from "react-native";
 
 interface IFormTextInput {
   placeholder: string;
@@ -9,6 +16,10 @@ interface IFormTextInput {
   onChange: (...event: any[]) => void;
   returnKeyType?: "next" | "done" | "go" | "search" | "send";
   iconSource?: any;
+  onSubmitEditing?: (
+    e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
+  ) => void;
+  inputRef?: RefObject<TextInput>;
 }
 
 const FormTextInput = ({
@@ -19,9 +30,12 @@ const FormTextInput = ({
   value,
   iconSource,
   returnKeyType,
+  onSubmitEditing,
+  inputRef,
 }: IFormTextInput) => (
   <View style={styles.inputContainer}>
     <TextInput
+      ref={inputRef}
       style={styles.inputs}
       placeholder={placeholder}
       underlineColorAndroid="transparent"
@@ -30,6 +44,7 @@ const FormTextInput = ({
       onChangeText={onChange}
       autoFocus={autoFocus}
       returnKeyType={returnKeyType}
+      onSubmitEditing={onSubmitEditing}
     />
     <Image style={styles.inputIcon} source={iconSource} />
   </View>

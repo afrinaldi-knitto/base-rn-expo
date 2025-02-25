@@ -219,6 +219,7 @@ async function createProject() {
         },
         package: packageName.trim(),
       },
+      plugins: ["expo-router"],
       experiments: {
         typedRoutes: true,
       },

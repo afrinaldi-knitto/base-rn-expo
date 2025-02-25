@@ -14,6 +14,7 @@
     },
     "package": "com.base.expo"
   },
+  "plugins": ["expo-router"],
   "experiments": {
     "typedRoutes": true
   }
